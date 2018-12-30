@@ -6,7 +6,7 @@ import sbtassembly.AssemblyPlugin.autoImport.assemblyOption
 lazy val commonSettings = Seq(
     organization := "me.osm",
     name := name.value,
-    version := "1.9.0",
+    version := "1.9.1",
 
     scalaVersion := "2.12.8",
     scalacOptions ++= Seq("-Xlint", "-feature", "-deprecation", "-target:jvm-1.7"),
