@@ -18,7 +18,8 @@ lazy val commonSettings = Seq(
     assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false),
 
     libraryDependencies ++= Seq(
-        "junit" % "junit" % "4.11" % "test"
+        "junit" % "junit" % "4.11" % "test",
+        "org.scalatest" %% "scalatest" % "3.0.5" % "test"
     )
 )
 
