@@ -10,7 +10,7 @@ Gazetteer
 
 Gazetteer used to parse *osm* data and do all dirty work with geometry.
 
-> there may be a non-deterministic behaviour in case of multipolygon geometry; 
+> there may be a non-deterministic behaviour in case of multipolygon geometry;
 extra work ([tests](https://github.com/vasnake/gazetteer/blob/bea14217a0d54df8333da57de42cc70a52490438/gazetteer/src/test/scala/me/osm/gazetteer/striper/builders/BuildUtilsTest.scala#L160-L184)) required
 
 You can use Gazetteer as standalone *osm* processor, to dump addresses from *osm*.
