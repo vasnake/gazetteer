@@ -190,6 +190,43 @@ class BuildUtilsTest extends FlatSpec with Matchers {
         assert(g.getCentroid.getX === (25.2469 +- tolerance))
         assert(g.getCentroid.getY === (21.9135 +- tolerance))
     }
+
+    // gazetteer/testOnly me.osm.gazetteer.striper.builders.BuildUtilsTest -- -z "non-deterministic"
+    it should "show non-deterministic result for multipolygon" in {
+        // define input
+        val outerWays =
+            """
+              |20 35, 10 10
+              |10 10, 45 20
+              |45 20, 20 35
+            """.stripMargin.trim
+        val innerWays =
+            """
+              |30 20, 20 15
+              |20 15, 20 25
+              |20 25, 30 20
+            """.stripMargin.trim
+
+        // load input
+        val outers = loadWaysFromText(outerWays)
+        val inners = loadWaysFromText(innerWays)
+
+        // generate output
+        def buildGeomWkt = wktwriter.write(BuildUtils.buildMultyPolygon(logger, relstub, outers, inners))
+
+        // check output
+        var res = Set.empty[String]
+        for (i <- 0 to 25) {
+            val mp = buildGeomWkt
+            if (i == 0) res += mp // first and hopefully last multipolygon
+            if (!res.contains(mp)) {
+                println(s"new variation on iter $i: $mp")
+                res += mp
+            }
+        }
+        assert(res.size > 1)
+    }
+
 }
 
 object Toolbox {
